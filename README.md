@@ -43,7 +43,7 @@ O fluxo principal do sistema segue as etapas abaixo:
   * Pagamentos
   * Regras de negócio
 
-### 🔹 Frontend
+### 🔹 Frontend -> https://github.com/VitorGagliani/front-automacao-restaurante
 
 Interfaces específicas para cada papel:
 
