@@ -101,7 +101,7 @@ Esse controle permite visibilidade em tempo real para a cozinha.
 
 ## 👨‍💻 Autor
 
-Desenvolvido por **Vitor Vgs**
+Desenvolvido por **Vitor Gagliani**
 
 
 
