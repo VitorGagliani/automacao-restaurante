@@ -26,11 +26,11 @@ public class Cliente {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
+	private Long id;
 	
 	@Column(nullable = false)
-	String nome;
+	private String nome;
 	
 	@Column(nullable = false)
-	String telefone;
+	private String telefone;
 }

@@ -28,21 +28,21 @@ public class Pedido {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	Long id;
+	private Long id;
 	
 	@ManyToOne
 	@JoinColumn(name = "mesa_id", nullable = false)
-	Mesa mesa;
+	private Mesa mesa;
 	
 	@ManyToOne
 	@JoinColumn(name = "cliente_id", nullable = false)
-	Cliente cliente;
+	private Cliente cliente;
 	
 	@Enumerated(EnumType.STRING)
     @Column(nullable = false)
-	Status status;
+	private Status status;
 	
 	@Column(nullable = false)
-	LocalDateTime dataHora;
+	private LocalDateTime dataHora;
 	
 }

@@ -1,6 +1,6 @@
 package com.ecommerce.dto;
 import java.math.BigDecimal;
-import com.ecommerce.entity.Categoria;
+import com.ecommerce.entity.Produto;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -19,9 +19,18 @@ public class ProdutoDTO{
 
 	private BigDecimal preco;
 	
-	private Categoria categoria;
+	private CategoriaDTO categoria;
 
 	private String imagem;
+	
+	public ProdutoDTO (Produto produto) {
+		this.id = produto.getId();
+		this.nome = produto.getNome();
+		this.descricao = produto.getDescricao();
+		this.preco = produto.getPreco();
+		this.categoria = new CategoriaDTO(produto.getCategoria());
+		this.imagem = produto.getImagem();
+	}
 
 
 }

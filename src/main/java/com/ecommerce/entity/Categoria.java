@@ -22,10 +22,10 @@ import lombok.Setter;
 public class Categoria{
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		Long id;
+		private Long id;
 		
 		@Column(nullable = false)
-		String nome;
+		private String nome;
 		
 
 }

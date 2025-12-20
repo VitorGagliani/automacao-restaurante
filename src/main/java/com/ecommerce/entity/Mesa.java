@@ -27,14 +27,14 @@ public class Mesa {
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	Long id;
+	private Long id;
 	
 	@Column(nullable = false)
-	String numero;
+	private String numero;
 	
 	@Enumerated(EnumType.STRING)
     @Column(nullable = false)
-	StatusMesa status;
+	private StatusMesa status;
 	
 	
 	

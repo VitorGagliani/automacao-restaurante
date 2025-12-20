@@ -11,32 +11,34 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Table(name = "arqprod")
 @Setter
+@Getter
 @EqualsAndHashCode
 public class Produto{
 		@Id
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		Long id;
+		private Long id;
 		
 		@Column(nullable = false)
-		String nome;
+		private String nome;
 
 		@Column(nullable = false)
-		String descricao;
+		private String descricao;
 		
 		@Column(nullable = false)
-		BigDecimal preco;
+		private BigDecimal preco;
 		
 		@JoinColumn(name = "cat_id", nullable = false)
 		@ManyToOne
-		Categoria categoria;
+		private Categoria categoria;
 		
 		@Column(nullable = false)
-		String imagem;
+		private String imagem;
 		
 }
 
