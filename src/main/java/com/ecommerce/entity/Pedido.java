@@ -1,5 +1,6 @@
 package com.ecommerce.entity;
 
+import com.ecommerce.dto.MesaDTO;
 import com.ecommerce.enums.Status;
 import java.time.LocalDateTime;
 
@@ -30,13 +31,17 @@ public class Pedido {
 	@Id
 	private Long id;
 	
-	@ManyToOne
-	@JoinColumn(name = "mesa_id", nullable = false)
-	private Mesa mesa;
+	@Column(nullable = false)
+	private Long idMesa;
 	
-	@ManyToOne
-	@JoinColumn(name = "cliente_id", nullable = false)
-	private Cliente cliente;
+	@Column(nullable = false)
+	private Long idCliente;
+	
+	@Column(nullable = false)
+	private String clienteNome;
+	
+	@Column(nullable = false)
+	private String clienteTelefone;
 	
 	@Enumerated(EnumType.STRING)
     @Column(nullable = false)
