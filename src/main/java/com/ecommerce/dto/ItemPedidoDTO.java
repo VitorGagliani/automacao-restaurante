@@ -15,9 +15,9 @@ public class ItemPedidoDTO {
 	
 	private Long id;
 
-	private PedidoDTO pedido;
+	private Long idPedido;
 	
-	private ProdutoDTO produto;
+	private Long idProduto;
 
 	private int quantidade;
 
@@ -25,8 +25,8 @@ public class ItemPedidoDTO {
 	
 	public ItemPedidoDTO (ItemPedido itemPedido) {
 		this.id = itemPedido.getId();
-		this.pedido = new PedidoDTO(itemPedido.getPedido());
-		this.produto = new ProdutoDTO(itemPedido.getProduto());
+		this.idPedido = itemPedido.getIdPedido();
+		this.idProduto = itemPedido.getIdPedido();
 		this.quantidade = itemPedido.getQuantidade();
 		this.observacao = itemPedido.getObservacao();
 	}

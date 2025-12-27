@@ -13,6 +13,7 @@ import com.ecommerce.entity.Mesa;
 import com.ecommerce.entity.Pedido;
 import com.ecommerce.enums.Status;
 import com.ecommerce.enums.StatusMesa;
+import com.ecommerce.repository.ClienteRepository;
 import com.ecommerce.repository.MesaRepository;
 import com.ecommerce.repository.PedidoRepository;
 import com.ecommerce.repository.ProdutoRepository;
