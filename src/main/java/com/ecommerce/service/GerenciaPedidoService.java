@@ -1,5 +1,6 @@
 package com.ecommerce.service;
 
+import java.io.Console;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -46,6 +47,8 @@ public class GerenciaPedidoService {
 		if (mesa.getStatus() != StatusMesa.Disponivel) {
 			throw new RuntimeException("Mesa não dispoível no momento");
 		}
+		
+		clienteService.validar(clienteNome, clienteTelefone);
 		
 		Pedido pedido = new Pedido();
 		pedido.setIdMesa(idMesa);

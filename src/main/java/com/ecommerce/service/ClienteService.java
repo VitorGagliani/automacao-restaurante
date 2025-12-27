@@ -30,6 +30,15 @@ public class ClienteService {
 		return clienteRepository.save(cliente);
 	}
 	
+	public Cliente validar(String nome, String telefone) {
+		Cliente cliente = clienteRepository.findByTelefone(telefone).get();
+		Boolean valido;
+		if (!cliente.getNome().equals(nome)) {
+			throw new RuntimeException("Telefone com outro nome cadastrado, insira o nome correto");
+			
+		}
+		return cliente;
+	}
 	
 
 }
