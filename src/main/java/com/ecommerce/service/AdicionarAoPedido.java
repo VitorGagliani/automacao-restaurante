@@ -37,8 +37,8 @@ public class AdicionarAoPedido {
 		adicionar.setIdProduto(idProduto);
 		if(observacao == null) {
 			observacao = "";
-			adicionar.setObservacao(observacao);
 		}
+		adicionar.setObservacao(observacao);
 		
 		adicionar.setQuantidade(quantidade);
 		
