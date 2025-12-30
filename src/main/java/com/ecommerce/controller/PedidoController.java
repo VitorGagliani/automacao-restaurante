@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.dto.ClienteDTO;
+import com.ecommerce.dto.CriaPedidoDTO;
 import com.ecommerce.dto.ItemPedidoDTO;
 import com.ecommerce.dto.MesaDTO;
 import com.ecommerce.dto.PedidoDTO;
@@ -27,10 +28,8 @@ public class PedidoController {
 	private AdicionarAoPedido adicionarAoPedido;
 	
 	@PostMapping(value = "/novo")
-	public Pedido criar(@RequestBody PedidoDTO pedido) {
-		return gerenciaPedidoService.criar(pedido.getIdMesa(),
-				pedido.getClienteNome(),
-				pedido.getClienteTelefone());
+	public Pedido criar(@RequestBody CriaPedidoDTO pedido) {
+		return gerenciaPedidoService.criar(pedido);
 	}
 	
 	@PostMapping(value = "/adicionar")
@@ -41,11 +40,15 @@ public class PedidoController {
 				item.getObservacao());
 	}
 	
+	//ajustar o service
+	/*
 	
 	@PutMapping(value = "/fechar")
 	public Pedido fechar (@RequestBody PedidoDTO pedido) {
 		return gerenciaPedidoService.fechar(pedido.getId());
 	}
+	*/
+	
 	
 	@PutMapping(value = "/preparar")
 	public Pedido preparar(@RequestBody PedidoDTO pedido) {

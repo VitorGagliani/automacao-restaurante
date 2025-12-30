@@ -2,6 +2,7 @@ package com.ecommerce.dto;
 
 import java.time.LocalDateTime;
 
+import com.ecommerce.entity.Mesa;
 import com.ecommerce.entity.Pedido;
 import com.ecommerce.enums.Status;
 
@@ -18,13 +19,9 @@ public class PedidoDTO {
 	
 private Long id;
 	
-	private Long idMesa;
+	private MesaDTO mesa;
 	
-	private Long idCliente;
-	
-	private String clienteNome;
-
-	private String clienteTelefone;
+	private ClienteDTO clienteDTO;
 	
 	private Status status;
 	
@@ -33,10 +30,7 @@ private Long id;
 	
 	public PedidoDTO(Pedido pedido) {
 		this.id = pedido.getId();
-		this.idMesa = pedido.getIdMesa();
-		this.idCliente = pedido.getIdCliente();
-		this.clienteNome = pedido.getClienteNome();
-		this.clienteTelefone = pedido.getClienteTelefone();
+		this.mesa = new MesaDTO(pedido.getMesa());
 		this.status = pedido.getStatus();
 		this.dataHora = pedido.getDataHora();
 		

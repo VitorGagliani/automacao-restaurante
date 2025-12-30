@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ecommerce.dto.CriaPedidoDTO;
 import com.ecommerce.dto.PedidoDTO;
 import com.ecommerce.entity.Cliente;
 import com.ecommerce.entity.Mesa;
@@ -36,26 +37,23 @@ public class GerenciaPedidoService {
 	@Autowired
 	ClienteService clienteService;
 	
-	public Pedido criar(Long idMesa, String clienteNome,
-			String clienteTelefone) {
+	public Pedido criar(CriaPedidoDTO pedidoDto ) {
 		
-		Mesa mesa = mesaRepository.findById(idMesa).orElseThrow(() -> new RuntimeException("Mesa não encontrada"));
+		Mesa mesa = mesaRepository.findById(pedidoDto.getIdMesa())
+				.orElseThrow(() -> new RuntimeException("Mesa não encontrada"));
 		
-		Cliente cliente = clienteRepository.findByTelefone(clienteTelefone)
-			    .orElseGet(() -> clienteService.criar(clienteNome, clienteTelefone));
+		Cliente cliente = clienteRepository.findById(pedidoDto.getIdCliente())
+				.orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
 
 		
 		if (mesa.getStatus() != StatusMesa.Disponivel) {
 			throw new RuntimeException("Mesa não dispoível no momento");
 		}
 		
-		clienteService.validar(clienteNome, clienteTelefone);
 		
 		Pedido pedido = new Pedido();
-		pedido.setIdMesa(idMesa);
-		pedido.setIdCliente(cliente.getId());
-		pedido.setClienteNome(clienteNome);
-		pedido.setClienteTelefone(clienteTelefone);
+		pedido.setMesa(mesa);
+		pedido.setCliente(cliente);
 		pedido.setDataHora(LocalDateTime.now());
 		pedido.setStatus(Status.Aberto);
 		
@@ -66,10 +64,15 @@ public class GerenciaPedidoService {
 		
 	}
 	
-	public Pedido fechar(Long id) {
+	
+	//ajustar de acordo com chave estrangeira
+	
+	/*
+	
+	public Pedido fechar(PedidoDTO pedidoDto) {
 		
 		
-		Pedido pedido = pedidoRepository.findById(id)
+		Pedido pedido = pedidoRepository.findById(pedidoDto.getId())
 		.orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
 		
 		if(pedido.getStatus() == Status.Finalizado) {
@@ -78,14 +81,16 @@ public class GerenciaPedidoService {
 		
 		
 		pedido.setStatus(Status.Finalizado);
-		Long mesaPedido = pedido.getIdMesa();
+	
 		
-		Mesa mesa = mesaRepository.findById(mesaPedido).orElseThrow(() -> new RuntimeException("Mesa não encontrada"));
+		Mesa mesa = mesaRepository.findById(pedidoDto.getMesa()).orElseThrow(() -> new RuntimeException("Mesa não encontrada"));
 		mesa.setStatus(StatusMesa.Disponivel);
 		
 		return pedidoRepository.save(pedido);
 		
 	}
+	
+	*/
 	
 	public Pedido emPreparo(Long id) {
 		

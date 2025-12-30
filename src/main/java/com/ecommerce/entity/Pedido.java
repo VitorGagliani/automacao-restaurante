@@ -31,17 +31,14 @@ public class Pedido {
 	@Id
 	private Long id;
 	
-	@Column(nullable = false)
-	private Long idMesa;
+	@ManyToOne
+	@JoinColumn(name = "mesa_id", nullable = false)
+	private Mesa mesa;
 	
-	@Column(nullable = false)
-	private Long idCliente;
 	
-	@Column(nullable = false)
-	private String clienteNome;
-	
-	@Column(nullable = false)
-	private String clienteTelefone;
+	@ManyToOne
+	@JoinColumn(name = "cliente_id", nullable = false)
+	private Cliente cliente;
 	
 	@Enumerated(EnumType.STRING)
     @Column(nullable = false)
