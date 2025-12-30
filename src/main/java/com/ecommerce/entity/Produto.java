@@ -33,12 +33,13 @@ public class Produto{
 		@Column(nullable = false)
 		private BigDecimal preco;
 		
-		@JoinColumn(name = "cat_id", nullable = false)
-		@ManyToOne
-		private Categoria categoria;
-		
 		@Column(nullable = false)
 		private String imagem;
+		
+		@ManyToOne
+		@JoinColumn(name = "cat_id", nullable = false)
+		private Categoria categoria;
+		
 		
 }
 
