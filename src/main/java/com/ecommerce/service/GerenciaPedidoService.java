@@ -1,5 +1,6 @@
 package com.ecommerce.service;
 
+import java.util.List;
 import java.io.Console;
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ecommerce.dto.CriaPedidoDTO;
+import com.ecommerce.dto.ListaPedidoDTO;
 import com.ecommerce.dto.PedidoDTO;
 import com.ecommerce.entity.Cliente;
 import com.ecommerce.entity.Mesa;
@@ -112,6 +114,11 @@ public class GerenciaPedidoService {
 		
 		return pedidoRepository.save(pedido);
 		
+	}
+	
+	public List<ListaPedidoDTO> listarPedidos(){
+		List<Pedido> pedidos = pedidoRepository.findAll();
+		return pedidos.stream().map(PedidoDTO::new).toList();
 	}
 	
 }
