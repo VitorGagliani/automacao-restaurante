@@ -41,13 +41,13 @@ public class PedidoController {
 	}
 	
 	//ajustar o service
-	/*
+	
 	
 	@PutMapping(value = "/fechar")
 	public Pedido fechar (@RequestBody PedidoDTO pedido) {
 		return gerenciaPedidoService.fechar(pedido.getId());
 	}
-	*/
+	
 	
 	
 	@PutMapping(value = "/preparar")

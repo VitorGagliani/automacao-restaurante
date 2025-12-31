@@ -67,12 +67,12 @@ public class GerenciaPedidoService {
 	
 	//ajustar de acordo com chave estrangeira
 	
-	/*
 	
-	public Pedido fechar(PedidoDTO pedidoDto) {
+	
+	public Pedido fechar(Long id) {
 		
 		
-		Pedido pedido = pedidoRepository.findById(pedidoDto.getId())
+		Pedido pedido = pedidoRepository.findById(id)
 		.orElseThrow(() -> new RuntimeException("Pedido não encontrado"));
 		
 		if(pedido.getStatus() == Status.Finalizado) {
@@ -81,16 +81,18 @@ public class GerenciaPedidoService {
 		
 		
 		pedido.setStatus(Status.Finalizado);
+		
+		
 	
 		
-		Mesa mesa = mesaRepository.findById(pedidoDto.getMesa()).orElseThrow(() -> new RuntimeException("Mesa não encontrada"));
+		Mesa mesa = pedido.getMesa();
 		mesa.setStatus(StatusMesa.Disponivel);
 		
 		return pedidoRepository.save(pedido);
 		
 	}
 	
-	*/
+	
 	
 	public Pedido emPreparo(Long id) {
 		
