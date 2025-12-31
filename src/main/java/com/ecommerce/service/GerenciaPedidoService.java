@@ -116,9 +116,6 @@ public class GerenciaPedidoService {
 		
 	}
 	
-	public List<ListaPedidoDTO> listarPedidos(){
-		List<Pedido> pedidos = pedidoRepository.findAll();
-		return pedidos.stream().map(PedidoDTO::new).toList();
-	}
+	
 	
 }
