@@ -65,7 +65,7 @@ public class GerenciaPedidoService {
 	}
 	
 	
-	//ajustar de acordo com chave estrangeira
+	//ajustado para pegar o ID do pedido
 	
 	
 	
