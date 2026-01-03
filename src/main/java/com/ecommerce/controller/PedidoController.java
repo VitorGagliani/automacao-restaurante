@@ -58,5 +58,8 @@ public class PedidoController {
 		return gerenciaPedidoService.emPreparo(pedido.getId());
 	}
 	
-	
+	@GetMapping(value = "/listar")
+		public List<Pedido> listar(Pedido pedido){
+			return gerenciaPedidoService.listar();
+	}
 }
