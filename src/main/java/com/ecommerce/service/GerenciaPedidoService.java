@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import com.ecommerce.dto.CriaPedidoDTO;
+import com.ecommerce.dto.ItemPedidoDTO;
 import com.ecommerce.dto.ListaPedidoDTO;
 import com.ecommerce.dto.PedidoDTO;
 import com.ecommerce.entity.Cliente;
@@ -117,8 +118,8 @@ public class GerenciaPedidoService {
 		
 	}
 	
-	public List<Pedido> listar() {
-		return pedidoRepository.findAll();
+	public List<ItemPedidoDTO> listar() {
+		return pedidoRepository.listarPedidos();
 	}
 	
 }

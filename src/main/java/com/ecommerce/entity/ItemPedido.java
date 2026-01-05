@@ -1,5 +1,7 @@
 package com.ecommerce.entity;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,14 +27,16 @@ public class ItemPedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
 	private Long id;
 	
-	@Column(nullable = false)
-	private Long idPedido;
+	@ManyToOne(optional = false)
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "produto_id")
+    private Produto produto;
 	
 	@Column(nullable = false)
-	private Long idProduto;
-	
-	@Column(nullable = false)
-	private int quantidade;
+	private BigDecimal quantidade;
 	
 	@Column(nullable = false)
 	private String observacao;

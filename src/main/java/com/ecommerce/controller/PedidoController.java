@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecommerce.dto.AdicionarProdutoDTO;
 import com.ecommerce.dto.ClienteDTO;
 import com.ecommerce.dto.CriaPedidoDTO;
 import com.ecommerce.dto.ItemPedidoDTO;
@@ -36,11 +37,8 @@ public class PedidoController {
 	}
 	
 	@PostMapping(value = "/adicionar")
-	public ItemPedido adicionar(@RequestBody ItemPedidoDTO item) {
-		return adicionarAoPedido.adicionar(item.getIdPedido(),
-				item.getIdProduto(),
-				item.getQuantidade(),
-				item.getObservacao());
+	public ItemPedido adicionar(@RequestBody AdicionarProdutoDTO item) {
+		return adicionarAoPedido.adicionar(item);
 	}
 	
 	//ajustar o service
@@ -59,7 +57,7 @@ public class PedidoController {
 	}
 	
 	@GetMapping(value = "/listar")
-		public List<Pedido> listar(Pedido pedido){
+		public List<ItemPedidoDTO> listar(Pedido pedido){
 			return gerenciaPedidoService.listar();
 	}
 }

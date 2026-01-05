@@ -1,5 +1,7 @@
 package com.ecommerce.dto;
 
+import java.math.BigDecimal;
+
 import com.ecommerce.entity.ItemPedido;
 
 import lombok.AllArgsConstructor;
@@ -15,18 +17,18 @@ public class ItemPedidoDTO {
 	
 	private Long id;
 
-	private Long idPedido;
+	private PedidoDTO pedido;
 	
-	private Long idProduto;
+	private ProdutoDTO produto;
 
-	private int quantidade;
+	private BigDecimal quantidade;
 
 	private String observacao;
 	
 	public ItemPedidoDTO (ItemPedido itemPedido) {
 		this.id = itemPedido.getId();
-		this.idPedido = itemPedido.getIdPedido();
-		this.idProduto = itemPedido.getIdPedido();
+		this.pedido = new PedidoDTO(itemPedido.getPedido());
+		this.produto = new ProdutoDTO(itemPedido.getProduto());
 		this.quantidade = itemPedido.getQuantidade();
 		this.observacao = itemPedido.getObservacao();
 	}
