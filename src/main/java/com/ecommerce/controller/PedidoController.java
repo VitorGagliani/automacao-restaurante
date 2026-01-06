@@ -65,5 +65,13 @@ public class PedidoController {
 	@GetMapping(value = "/listar-abertos")
 	public List<ListaPedidos> listarAbertos(Pedido pedido){
 		return gerenciaPedidoService.listarAbertos();
-}
+	}
+	
+	@GetMapping(value = "/listar-finalizados")
+	public List<ListaPedidos> listarFinalizados(Pedido pedido){
+		return gerenciaPedidoService.listarFinalizados();
+	}
+	
+	
+	
 }

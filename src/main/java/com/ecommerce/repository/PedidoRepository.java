@@ -42,6 +42,22 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long>{
 		    ORDER BY p.id DESC
 		""", nativeQuery = true)
 		    List<ListaPedidos> listarPedidosAbertos();
+	
+	@Query(value = """
+			 SELECT
+		        p.id              AS pedidoId,
+		        p.status          AS status,
+		        it.id             AS itemId,
+		        prod.nome         AS produto,
+		        it.quantidade     AS quantidade,
+		        it.observacao     AS observacao
+		    FROM arqpedi p
+		    LEFT JOIN arq_it_pe it ON it.pedido_id = p.id
+		    LEFT JOIN arqprod prod ON prod.id = it.produto_id
+		    where p.status = 'Finalizado'
+		    ORDER BY p.id DESC
+		""", nativeQuery = true)
+		    List<ListaPedidos> listarPedidosFinalizados();
 
 
 }

@@ -140,4 +140,15 @@ public class GerenciaPedidoService {
 				)).toList();
 	}
 	
+	public List<ListaPedidos> listarFinalizados(){
+		return pedidoRepository.listarPedidosFinalizados().stream().map(pedido -> new ListaPedidos(
+				pedido.pedidoId(),
+				pedido.status(),
+				pedido.itemId(),
+				pedido.produto(),
+				pedido.quantidade(),
+				pedido.observacao()
+				)).toList();
+	}
+	
 }
