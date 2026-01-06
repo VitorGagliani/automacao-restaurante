@@ -20,6 +20,7 @@ import com.ecommerce.entity.ItemPedido;
 import com.ecommerce.entity.Pedido;
 import com.ecommerce.service.AdicionarAoPedido;
 import com.ecommerce.service.GerenciaPedidoService;
+import com.ecommerce.service.ListaPedidos;
 
 @RestController
 @RequestMapping(value = "/pedido")
@@ -57,7 +58,12 @@ public class PedidoController {
 	}
 	
 	@GetMapping(value = "/listar")
-		public List<ItemPedidoDTO> listar(Pedido pedido){
-			return gerenciaPedidoService.listar();
+		public List<ListaPedidos> listar(Pedido pedido){
+			return gerenciaPedidoService.listarTodos();
 	}
+	
+	@GetMapping(value = "/listar-abertos")
+	public List<ListaPedidos> listarAbertos(Pedido pedido){
+		return gerenciaPedidoService.listarAbertos();
+}
 }

@@ -118,8 +118,26 @@ public class GerenciaPedidoService {
 		
 	}
 	
-	public List<ItemPedidoDTO> listar() {
-		return pedidoRepository.listarPedidos();
+	public List<ListaPedidos> listarTodos() {
+		return pedidoRepository.listarTodosPedidos().stream().map(pedido -> new ListaPedidos(
+	            pedido.pedidoId(),
+	            pedido.status(),
+	            pedido.itemId(),
+	            pedido.produto(),
+	            pedido.quantidade(),
+	            pedido.observacao()
+				)).toList();
+	}
+	
+	public List<ListaPedidos> listarAbertos(){
+		return pedidoRepository.listarPedidosAbertos().stream().map(pedido -> new ListaPedidos(
+				pedido.pedidoId(),
+				pedido.status(),
+				pedido.itemId(),
+				pedido.produto(),
+				pedido.quantidade(),
+				pedido.observacao()
+				)).toList();
 	}
 	
 }
