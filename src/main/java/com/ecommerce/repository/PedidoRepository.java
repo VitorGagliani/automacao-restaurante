@@ -23,7 +23,7 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long>{
 		    FROM arqpedi p
 		    LEFT JOIN arq_it_pe it ON it.pedido_id = p.id
 		    LEFT JOIN arqprod prod ON prod.id = it.produto_id
-		    ORDER BY p.data_hora DESC
+		    ORDER BY p.id DESC
 		""", nativeQuery = true)
 		    List<ListaPedidos> listarTodosPedidos();
 	
@@ -39,7 +39,7 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long>{
 		    LEFT JOIN arq_it_pe it ON it.pedido_id = p.id
 		    LEFT JOIN arqprod prod ON prod.id = it.produto_id
 		    where p.status = 'Aberto'
-		    ORDER BY p.data_hora DESC
+		    ORDER BY p.id DESC
 		""", nativeQuery = true)
 		    List<ListaPedidos> listarPedidosAbertos();
 
