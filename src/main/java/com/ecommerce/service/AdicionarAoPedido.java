@@ -32,7 +32,11 @@ public class AdicionarAoPedido {
 		ItemPedido item = new ItemPedido();
 		item.setPedido(pedido);
 		item.setProduto(novoProduto);
-		item.setObservacao(produto.getObservacao());
+		if(produto.getObservacao() == null) {
+			produto.setObservacao("");
+		}else {
+			item.setObservacao(produto.getObservacao());
+		}
 		item.setQuantidade(produto.getQuantidade());
 		
 		return itemPedidoRepository.save(item);

@@ -118,6 +118,9 @@ public class GerenciaPedidoService {
 		
 	}
 	
+	//commit Ajuste query listar pedidos
+	
+	
 	public List<ListaPedidos> listarTodos() {
 		return pedidoRepository.listarTodosPedidos().stream().map(pedido -> new ListaPedidos(
 	            pedido.pedidoId(),
@@ -128,6 +131,9 @@ public class GerenciaPedidoService {
 	            pedido.observacao()
 				)).toList();
 	}
+	
+	
+	//commit Ajuste query listar pedidos
 	
 	public List<ListaPedidos> listarAbertos(){
 		return pedidoRepository.listarPedidosAbertos().stream().map(pedido -> new ListaPedidos(
@@ -140,12 +146,40 @@ public class GerenciaPedidoService {
 				)).toList();
 	}
 	
+	//commit Adicionado query de listar pedidos finalizados
+	
 	public List<ListaPedidos> listarFinalizados(){
 		return pedidoRepository.listarPedidosFinalizados().stream().map(pedido -> new ListaPedidos(
 				pedido.pedidoId(),
 				pedido.status(),
 				pedido.itemId(),
 				pedido.produto(),
+				pedido.quantidade(),
+				pedido.observacao()
+				)).toList();
+	}
+	
+	
+	//chamando query para buscar o pedido por id
+	
+	public List<ListaPedidos> listarPorId(Long idPedido){
+		return pedidoRepository.listarPedidosPorId(idPedido).stream().map(pedido -> new ListaPedidos(
+				pedido.pedidoId(),
+				pedido.status(),
+				pedido.itemId(),
+				pedido.produto(),
+				pedido.quantidade(),
+				pedido.observacao()
+				)).toList();
+	}
+	
+	//query planejada para listar o pedido no menu-carrinho
+	
+	public List<ListaPedidoMenu> listarMenu(Long idPedido){
+		return pedidoRepository.listarPedidosMenu(idPedido).stream().map(pedido -> new ListaPedidoMenu(
+				pedido.pedidoId(),
+				pedido.nome(),
+				pedido.produtoImagem(),
 				pedido.quantidade(),
 				pedido.observacao()
 				)).toList();

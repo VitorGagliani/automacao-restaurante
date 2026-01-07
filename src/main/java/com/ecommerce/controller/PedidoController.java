@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,6 +21,7 @@ import com.ecommerce.entity.ItemPedido;
 import com.ecommerce.entity.Pedido;
 import com.ecommerce.service.AdicionarAoPedido;
 import com.ecommerce.service.GerenciaPedidoService;
+import com.ecommerce.service.ListaPedidoMenu;
 import com.ecommerce.service.ListaPedidos;
 
 @RestController
@@ -32,6 +34,8 @@ public class PedidoController {
 	@Autowired
 	private AdicionarAoPedido adicionarAoPedido;
 	
+	//gerenciando pedidos
+	
 	@PostMapping(value = "/novo")
 	public Pedido criar(@RequestBody CriaPedidoDTO pedido) {
 		return gerenciaPedidoService.criar(pedido);
@@ -42,7 +46,7 @@ public class PedidoController {
 		return adicionarAoPedido.adicionar(item);
 	}
 	
-	//ajustar o service
+	//ajustar o service - feito
 	
 	
 	@PutMapping(value = "/fechar")
@@ -56,8 +60,12 @@ public class PedidoController {
 	public Pedido preparar(@RequestBody PedidoDTO pedido) {
 		return gerenciaPedidoService.emPreparo(pedido.getId());
 	}
+	//-----------------------------------
 	
-	@GetMapping(value = "/listar")
+	
+	//listagens
+	
+	@GetMapping(value = "/listar-todos")
 		public List<ListaPedidos> listar(Pedido pedido){
 			return gerenciaPedidoService.listarTodos();
 	}
@@ -72,6 +80,19 @@ public class PedidoController {
 		return gerenciaPedidoService.listarFinalizados();
 	}
 	
+	//buscando por id via url
+	
+	@GetMapping(value = "/listar-id/{idPedido}")
+	public List<ListaPedidos> listarFinalizados(@PathVariable("idPedido") Long idPedido, Pedido pedido){
+		return gerenciaPedidoService.listarPorId(idPedido);
+	}
+	
+	//to passando o id do produto via url
+	
+	@GetMapping(value = "/{idPedido}")
+	public List<ListaPedidoMenu> listarPedidosCarrinho(@PathVariable("idPedido") Long idPedido, Pedido pedido){
+		return gerenciaPedidoService.listarMenu(idPedido);
+	}
 	
 	
 }
