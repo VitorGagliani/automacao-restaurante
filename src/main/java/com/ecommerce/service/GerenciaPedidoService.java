@@ -185,4 +185,22 @@ public class GerenciaPedidoService {
 				)).toList();
 	}
 	
+	public List<GridCozinha> listarGridCozinha(){
+		return pedidoRepository.listarGridCozinha().stream().map(pedido -> new GridCozinha(
+				pedido.id(),
+				pedido.status(),
+				pedido.mesa(),
+				pedido.hora_pedido()
+				)).toList();
+	}
+	
+	public List<DialogGrid> dialogCozinha(Long id){
+		return pedidoRepository.dialogProduto(id).stream().map(pedido -> new DialogGrid(
+				pedido.item_codigo(),
+				pedido.produto(),
+				pedido.quantidade_produto(),
+				pedido.observacao_produto()
+				)).toList();
+	}
+	
 }

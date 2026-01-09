@@ -20,7 +20,9 @@ import com.ecommerce.dto.PedidoDTO;
 import com.ecommerce.entity.ItemPedido;
 import com.ecommerce.entity.Pedido;
 import com.ecommerce.service.AdicionarAoPedido;
+import com.ecommerce.service.DialogGrid;
 import com.ecommerce.service.GerenciaPedidoService;
+import com.ecommerce.service.GridCozinha;
 import com.ecommerce.service.ListaPedidoMenu;
 import com.ecommerce.service.ListaPedidos;
 
@@ -94,5 +96,17 @@ public class PedidoController {
 		return gerenciaPedidoService.listarMenu(idPedido);
 	}
 	
+	
+	//Grid cozinha
+	@GetMapping(value = "/grid")
+	public List<GridCozinha> listarGridCozinha(){
+		return gerenciaPedidoService.listarGridCozinha();
+	}
+	
+	//Dialog da grid
+	@GetMapping(value = "/grid/{idPedido}")
+	public List<DialogGrid> dialogGrid(@PathVariable("idPedido") Long idPedido){
+		return gerenciaPedidoService.dialogCozinha(idPedido);
+	}
 	
 }
