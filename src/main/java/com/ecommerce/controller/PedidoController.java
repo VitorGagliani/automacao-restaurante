@@ -89,7 +89,7 @@ public class PedidoController {
 		return gerenciaPedidoService.listarPorId(idPedido);
 	}
 	
-	//to passando o id do produto via url
+	//Listando pedido carrinho
 	
 	@GetMapping(value = "/{idPedido}")
 	public List<ListaPedidoMenu> listarPedidosCarrinho(@PathVariable("idPedido") Long idPedido, Pedido pedido){

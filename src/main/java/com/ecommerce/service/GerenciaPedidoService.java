@@ -46,9 +46,13 @@ public class GerenciaPedidoService {
 		Mesa mesa = mesaRepository.findById(pedidoDto.getIdMesa())
 				.orElseThrow(() -> new RuntimeException("Mesa não encontrada"));
 		
-		Cliente cliente = clienteRepository.findById(pedidoDto.getIdCliente())
-				.orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+	//	Cliente cliente = clienteRepository.findById(pedidoDto.getIdCliente())
+			//	.orElse(clienteService.criar(pedidoDto.getIdCliente()));
+		
+		Cliente cliente = clienteRepository.findByTelefone(pedidoDto.getTelefone())
+				.orElseGet(() ->clienteService.criar(pedidoDto.getClienteNome(), pedidoDto.getTelefone()));
 
+		
 		
 		if (mesa.getStatus() != StatusMesa.Disponivel) {
 			throw new RuntimeException("Mesa não dispoível no momento");

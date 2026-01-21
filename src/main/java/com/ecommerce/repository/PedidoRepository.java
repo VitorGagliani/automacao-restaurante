@@ -79,6 +79,10 @@ import com.ecommerce.service.ListaPedidoMenu;
 			""", nativeQuery = true)
 			    List<ListaPedidos> listarPedidosPorId(Long idPedido);
 		
+		
+		
+		//Pedido no carrinho
+		
 		@Query(value = """
 				 select 
 	 	p.id as pedidoID,
