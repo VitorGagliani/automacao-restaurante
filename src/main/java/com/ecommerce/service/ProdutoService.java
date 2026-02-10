@@ -49,6 +49,19 @@ public class ProdutoService {
 	
 	public List<ListarProdutosMenu> listar(Long idCategoria){
 		return produtoRepository.listarProdutos(idCategoria).stream().map(produto -> new ListarProdutosMenu(
+				produto.id(),
+				produto.imagem(),
+				produto.nome(),
+				produto.preco(),
+				produto.descricao()
+				)).toList();
+		
+		
+	}
+	
+	public List<ListarProdutosMenu> listarTodos(){
+		return produtoRepository.listarProdutosTodos().stream().map(produto -> new ListarProdutosMenu(
+				produto.id(),
 				produto.imagem(),
 				produto.nome(),
 				produto.preco(),
@@ -56,6 +69,5 @@ public class ProdutoService {
 				)).toList();
 		
 	}
-	
 	
 }

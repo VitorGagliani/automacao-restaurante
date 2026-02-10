@@ -35,4 +35,9 @@ public class ProdutoController {
 		return adicionar.listar(idCategoria);
 	}
 	
+	@GetMapping(value = "/listar-produtos")
+	public List<ListarProdutosMenu> listar(Produto produto){
+		return adicionar.listarTodos();
+	}
+	
 }
