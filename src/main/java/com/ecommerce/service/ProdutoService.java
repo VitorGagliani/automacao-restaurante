@@ -1,5 +1,7 @@
 package com.ecommerce.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,10 +10,14 @@ import com.ecommerce.dto.ProdutoDTO;
 import com.ecommerce.entity.Categoria;
 import com.ecommerce.entity.Produto;
 import com.ecommerce.repository.CategoriaRepository;
+import com.ecommerce.repository.PedidoRepository;
 import com.ecommerce.repository.ProdutoRepository;
 
+
+//Criar produto
+
 @Service
-public class AdicionarProdutoService {
+public class ProdutoService {
 
 	@Autowired
 	ProdutoRepository produtoRepository;
@@ -38,6 +44,16 @@ public class AdicionarProdutoService {
 		produto.setPreco(produtoDto.getPreco());
 		
 		return produtoRepository.save(produto);
+		
+	}
+	
+	public List<ListarProdutosMenu> listar(Long idCategoria){
+		return produtoRepository.listarProdutos(idCategoria).stream().map(produto -> new ListarProdutosMenu(
+				produto.imagem(),
+				produto.nome(),
+				produto.preco(),
+				produto.descricao()
+				)).toList();
 		
 	}
 	

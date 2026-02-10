@@ -1,9 +1,19 @@
 package com.ecommerce.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.ecommerce.dto.CategoriaDTO;
 import com.ecommerce.entity.Categoria;
 
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 
+	@Query(value = """
+			select * from arqcat
+			order by nome desc;"""
+			, nativeQuery = true)
+	List<CategoriaDTO> listarCategorias();
+	
 }
