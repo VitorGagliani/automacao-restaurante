@@ -11,9 +11,9 @@ import com.ecommerce.entity.Mesa;
 public interface MesaRepository extends JpaRepository<Mesa, Long>{
 	
 	@Query("""
-		    SELECT
-		    new com.ecommerce.dto.MesaDTO(m.id, m.numero, m.status)
+		    SELECT new com.ecommerce.dto.MesaDTO(m.id, m.numero, m.status)
 		    FROM Mesa m
+		    order by m.id
 		""")
 		List<MesaDTO> listarMesas();
 
