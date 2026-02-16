@@ -2,6 +2,8 @@ package com.ecommerce.entity;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +31,7 @@ public class ItemPedido {
 	
 	@ManyToOne(optional = false)
     @JoinColumn(name = "pedido_id")
+	@JsonIgnore
     private Pedido pedido;
 
     @ManyToOne(optional = false)
