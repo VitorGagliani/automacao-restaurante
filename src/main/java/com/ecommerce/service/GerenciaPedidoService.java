@@ -184,6 +184,7 @@ public class GerenciaPedidoService {
 				pedido.pedidoId(),
 				pedido.nome(),
 				pedido.produtoImagem(),
+				pedido.preco(),
 				pedido.quantidade(),
 				pedido.observacao()
 				)).toList();

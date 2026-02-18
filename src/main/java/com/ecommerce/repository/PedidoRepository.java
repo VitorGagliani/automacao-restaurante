@@ -88,12 +88,13 @@ import com.ecommerce.service.ListaPedidoMenu;
 	 	p.id as pedidoID,
 	 	prod.nome as produto,
 	 	prod.imagem as produtoImagem,
+	 	prod.preco as produtoPreco,
 	 	it.quantidade as quantidade,
 	 	it.observacao as observacao
 	 	from arqpedi p
 	 	left join arq_it_pe it on it.pedido_id = p.id
 	 	left join arqprod prod on prod.id = it.produto_id
-	 	where p.id = ?1 and p.status = 'Aberto'
+	 	where p.id = ?1
 	 	order by it.quantidade desc;
 				""", nativeQuery = true)
 		List<ListaPedidoMenu> listarPedidosMenu(Long idPedido);

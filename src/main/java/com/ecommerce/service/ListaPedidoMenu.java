@@ -6,6 +6,7 @@ public record ListaPedidoMenu(
 		Long pedidoId,
 		String nome,
 		String produtoImagem,
+		BigDecimal preco,
 		BigDecimal quantidade,
 		String observacao
 		) {}
