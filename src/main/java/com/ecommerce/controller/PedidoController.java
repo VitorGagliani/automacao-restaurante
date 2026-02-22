@@ -103,7 +103,7 @@ public class PedidoController {
 		return gerenciaPedidoService.listarGridCozinha();
 	}
 	
-	//Dialog da grid
+	//Dialog da grid da cozinha
 	@GetMapping(value = "/grid/{idPedido}")
 	public List<DialogGrid> dialogGrid(@PathVariable("idPedido") Long idPedido){
 		return gerenciaPedidoService.dialogCozinha(idPedido);

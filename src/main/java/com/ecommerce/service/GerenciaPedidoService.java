@@ -199,12 +199,17 @@ public class GerenciaPedidoService {
 				)).toList();
 	}
 	
+	
+//Dialog do pedido cozinha
+	
 	public List<DialogGrid> dialogCozinha(Long id){
-		return pedidoRepository.dialogProduto(id).stream().map(pedido -> new DialogGrid(
-				pedido.item_codigo(),
+		return pedidoRepository.dialogProdutoCozinha(id).stream().map(pedido -> new DialogGrid(
+				pedido.pedido_id(),
+				pedido.status(),
 				pedido.produto(),
 				pedido.quantidade_produto(),
-				pedido.observacao_produto()
+				pedido.observacao_produto(),
+				pedido.data()
 				)).toList();
 	}
 	

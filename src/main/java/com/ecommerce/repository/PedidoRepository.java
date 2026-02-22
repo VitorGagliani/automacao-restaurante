@@ -99,6 +99,8 @@ import com.ecommerce.service.ListaPedidoMenu;
 				""", nativeQuery = true)
 		List<ListaPedidoMenu> listarPedidosMenu(Long idPedido);
 		
+		//Primeira grid da cozinha
+		
 		@Query(value = """
 				select 
 	    id, 
@@ -113,16 +115,18 @@ import com.ecommerce.service.ListaPedidoMenu;
 		
 		@Query(value = """
 				select
-        item.id as item_codigo,
-        prod.nome as produto,
-        item.quantidade as quantidade_produto,
-        item.observacao as observacao_produto
-        from arqpedi pedido
-        left join arq_it_pe item on item.pedido_id = pedido.id
-        left join arqprod prod on prod.id = item.produto_id
-        where pedido.id = ?1;
+		pedido.id as numero_pedido,
+		pedido.status as status,
+		prod.nome as produto,
+		item.quantidade as quantidade_produto,
+		item.observacao as observacao_produto,
+		pedido.data_hora as data
+		from arqpedi pedido
+		left join arq_it_pe item on item.pedido_id = pedido.id
+		left join arqprod prod on prod.id = item.produto_id
+		where pedido.id = ?1;
 				""", nativeQuery = true)
-		List<DialogGrid> dialogProduto(Long id);
+		List<DialogGrid> dialogProdutoCozinha(Long id);
 	
 	}
 	
