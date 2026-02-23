@@ -118,6 +118,7 @@ import com.ecommerce.service.ListaPedidoMenu;
 			        and data_hora >= coalesce(:dataInicio, data_hora)
 			        and data_hora <= coalesce(:dataFim, data_hora)
 			    order by id desc
+			    limit 15;
 			    """, nativeQuery = true)
 			List<GridCozinha> listarGridCozinha(
 			        @Param("status") String status,
