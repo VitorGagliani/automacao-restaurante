@@ -12,7 +12,7 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 
 	@Query(value = """
 			select * from arqcat
-			order by id;"""
+			order by nome asc;"""
 			, nativeQuery = true)
 	List<CategoriaDTO> listarCategorias();
 	

@@ -1,6 +1,7 @@
 package com.ecommerce.service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public record DialogGrid(
@@ -9,5 +10,5 @@ public record DialogGrid(
 		String produto,
 		BigDecimal quantidade_produto,
 		String observacao_produto,
-		LocalDateTime data
+		LocalDate data
 		) {}

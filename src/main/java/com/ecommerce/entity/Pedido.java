@@ -2,6 +2,8 @@ package com.ecommerce.entity;
 
 import com.ecommerce.dto.MesaDTO;
 import com.ecommerce.enums.Status;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -47,7 +49,7 @@ public class Pedido {
 	private Status status;
 	
 	@Column(nullable = false)
-	private LocalDateTime dataHora;
+	private LocalDate dataHora;
 	
 	@OneToMany(mappedBy = "pedido")
 	private List<ItemPedido> itens;

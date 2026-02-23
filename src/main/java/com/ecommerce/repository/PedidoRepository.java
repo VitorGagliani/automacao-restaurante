@@ -106,7 +106,7 @@ import com.ecommerce.service.ListaPedidoMenu;
 	    id, 
 	    status, 
 	    mesa_id as mesa, 
-	    data_hora as hora_Pedido
+	    data_hora as data_pedido
 	    from arqpedi
 	    where status <> 'Finalizado'
 		order by id desc;		

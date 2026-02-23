@@ -1,5 +1,6 @@
 package com.ecommerce.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.ecommerce.entity.Mesa;
@@ -25,7 +26,7 @@ private Long id;
 	
 	private Status status;
 	
-	private LocalDateTime dataHora;
+	private LocalDate dataHora;
 	
 	
 	public PedidoDTO(Pedido pedido) {

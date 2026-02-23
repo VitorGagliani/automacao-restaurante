@@ -2,6 +2,7 @@ package com.ecommerce.service;
 
 import java.util.List;
 import java.io.Console;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -62,7 +63,7 @@ public class GerenciaPedidoService {
 		Pedido pedido = new Pedido();
 		pedido.setMesa(mesa);
 		pedido.setCliente(cliente);
-		pedido.setDataHora(LocalDateTime.now());
+		pedido.setDataHora(LocalDate.now());
 		pedido.setStatus(Status.Aberto);
 		
 		mesa.setStatus(StatusMesa.Indisponivel);
@@ -200,7 +201,7 @@ public class GerenciaPedidoService {
 	}
 	
 	
-//Dialog do pedido cozinha
+	//Dialog do pedido cozinha
 	
 	public List<DialogGrid> dialogCozinha(Long id){
 		return pedidoRepository.dialogProdutoCozinha(id).stream().map(pedido -> new DialogGrid(
