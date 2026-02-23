@@ -1,6 +1,8 @@
 	package com.ecommerce.repository;
 	
-	import java.util.List;
+	import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 	
 	import org.springframework.data.jpa.repository.JpaRepository;
 	import org.springframework.data.jpa.repository.Query;
@@ -101,18 +103,28 @@ import com.ecommerce.service.ListaPedidoMenu;
 		
 		//Primeira grid da cozinha
 		
-		@Query(value = """
-				select 
-	    id, 
-	    status, 
-	    mesa_id as mesa, 
-	    data_hora as data_pedido
-	    from arqpedi
-	    where status <> 'Finalizado'
-		order by id desc;		
-				""", nativeQuery = true)
-		List<GridCozinha> listarGridCozinha();
+		//nao me pergunte o que é isso
 		
+		@Query(value = """
+			    select 
+			        id, 
+			        status, 
+			        mesa_id as mesa, 
+			        data_hora as data_pedido
+			    from arqpedi
+			    where 
+			        (:status is null or status = :status)
+			        and (:mesa is null or mesa_id = :mesa)
+			        and data_hora >= coalesce(:dataInicio, data_hora)
+			        and data_hora <= coalesce(:dataFim, data_hora)
+			    order by id desc
+			    """, nativeQuery = true)
+			List<GridCozinha> listarGridCozinha(
+			        @Param("status") String status,
+			        @Param("mesa") Long mesa,
+			        @Param("dataInicio") LocalDateTime dataInicio,
+			        @Param("dataFim") LocalDateTime dataFim
+			);
 		@Query(value = """
 				select
 		pedido.id as numero_pedido,

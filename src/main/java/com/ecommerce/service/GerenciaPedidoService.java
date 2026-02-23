@@ -4,6 +4,7 @@ import java.util.List;
 import java.io.Console;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -191,13 +192,27 @@ public class GerenciaPedidoService {
 				)).toList();
 	}
 	
-	public List<GridCozinha> listarGridCozinha(){
-		return pedidoRepository.listarGridCozinha().stream().map(pedido -> new GridCozinha(
-				pedido.id(),
-				pedido.status(),
-				pedido.mesa(),
-				pedido.hora_pedido()
-				)).toList();
+	public List<GridCozinha> listarGridCozinha(
+	        String status,
+	        Long mesa,
+	        LocalDate inicio,
+	        LocalDate fim
+	) {
+
+	    LocalDateTime inicioDateTime = inicio != null
+	            ? inicio.atStartOfDay()
+	            : null;
+
+	    LocalDateTime fimDateTime = fim != null
+	            ? fim.atTime(LocalTime.MAX)
+	            : null;
+
+	    return pedidoRepository.listarGridCozinha(
+	            status,
+	            mesa,
+	            inicioDateTime,
+	            fimDateTime
+	    );
 	}
 	
 	

@@ -1,14 +1,17 @@
 package com.ecommerce.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.dto.AdicionarProdutoDTO;
@@ -99,8 +102,20 @@ public class PedidoController {
 	
 	//Grid cozinha
 	@GetMapping(value = "/grid")
-	public List<GridCozinha> listarGridCozinha(){
-		return gerenciaPedidoService.listarGridCozinha();
+	public List<GridCozinha> listarGridCozinha(
+			 @RequestParam(required = false) String status,
+		        @RequestParam(required = false) Long mesa,
+		        @RequestParam(required = false)
+		        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+		        LocalDate inicio,
+		        @RequestParam(required = false)
+		        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+		        LocalDate fim
+			){
+		return gerenciaPedidoService.listarGridCozinha(
+				status, mesa, inicio, fim
+				);
+				
 	}
 	
 	//Dialog da grid da cozinha
