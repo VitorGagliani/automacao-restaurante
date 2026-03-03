@@ -14,6 +14,7 @@ import lombok.Setter;
 public class AdicionarProdutoDTO {
 	private Long idPedido;
 	private Long idProduto;
+	private Long mesa;
 	private BigDecimal quantidade;
 	private String observacao;
 }

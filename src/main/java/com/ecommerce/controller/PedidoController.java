@@ -26,6 +26,7 @@ import com.ecommerce.service.AdicionarAoPedido;
 import com.ecommerce.service.DialogGrid;
 import com.ecommerce.service.GerenciaPedidoService;
 import com.ecommerce.service.GridCozinha;
+import com.ecommerce.service.ListaItems;
 import com.ecommerce.service.ListaPedidoMenu;
 import com.ecommerce.service.ListaPedidos;
 
@@ -52,13 +53,22 @@ public class PedidoController {
 	}
 	
 	//ajustar o service - feito
-	
+	//fechar PEDIDO (MESA)
 	
 	@PutMapping(value = "/fechar")
 	public Pedido fechar (@RequestBody PedidoDTO pedido) {
 		return gerenciaPedidoService.fechar(pedido.getId());
 	}
 	
+	@PutMapping(value = "/fechar-comanda")
+	public ItemPedido fecharComanda (@RequestBody ItemPedidoDTO comanda) {
+		return adicionarAoPedido.fechar(comanda.getId());
+	}
+	
+	@PutMapping(value = "/preparar-comanda")
+	public ItemPedido prepararComanda (@RequestBody ItemPedidoDTO comanda) {
+		return adicionarAoPedido.preparar(comanda.getId());
+	}
 	
 	
 	@PutMapping(value = "/preparar")
@@ -102,7 +112,7 @@ public class PedidoController {
 	
 	//Grid cozinha
 	@GetMapping(value = "/grid")
-	public List<GridCozinha> listarGridCozinha(
+	public List<ListaItems> listarGridCozinha(
 			 @RequestParam(required = false) String status,
 		        @RequestParam(required = false) Long mesa,
 		        @RequestParam(required = false)
@@ -113,7 +123,10 @@ public class PedidoController {
 		        LocalDate fim
 			){
 		return gerenciaPedidoService.listarGridCozinha(
-				status, mesa, inicio, fim
+				status,
+				mesa,
+				inicio,
+				fim
 				);
 				
 	}

@@ -21,6 +21,7 @@ import com.ecommerce.entity.Pedido;
 import com.ecommerce.enums.Status;
 import com.ecommerce.enums.StatusMesa;
 import com.ecommerce.repository.ClienteRepository;
+import com.ecommerce.repository.ItemPedidoRepository;
 import com.ecommerce.repository.MesaRepository;
 import com.ecommerce.repository.PedidoRepository;
 import com.ecommerce.repository.ProdutoRepository;
@@ -33,6 +34,9 @@ public class GerenciaPedidoService {
 	
 	@Autowired
 	PedidoRepository pedidoRepository;
+	
+	@Autowired
+	ItemPedidoRepository itemRepository;
 	
 	@Autowired
 	MesaRepository mesaRepository;
@@ -192,7 +196,7 @@ public class GerenciaPedidoService {
 				)).toList();
 	}
 	
-	public List<GridCozinha> listarGridCozinha(
+	public List<ListaItems> listarGridCozinha(
 	        String status,
 	        Long mesa,
 	        LocalDate inicio,
@@ -207,12 +211,7 @@ public class GerenciaPedidoService {
 	            ? fim.atTime(LocalTime.MAX)
 	            : null;
 
-	    return pedidoRepository.listarGridCozinha(
-	            status,
-	            mesa,
-	            inicioDateTime,
-	            fimDateTime
-	    );
+	    return itemRepository.listarItemsPedidos();
 	}
 	
 	

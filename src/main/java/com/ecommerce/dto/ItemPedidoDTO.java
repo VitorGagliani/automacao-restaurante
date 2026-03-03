@@ -3,6 +3,7 @@ package com.ecommerce.dto;
 import java.math.BigDecimal;
 
 import com.ecommerce.entity.ItemPedido;
+import com.ecommerce.enums.Status;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,16 +22,13 @@ public class ItemPedidoDTO {
 	
 	private ProdutoDTO produto;
 
+	private MesaDTO mesa;
+	
 	private BigDecimal quantidade;
 
 	private String observacao;
 	
-	public ItemPedidoDTO (ItemPedido itemPedido) {
-		this.id = itemPedido.getId();
-		this.pedido = new PedidoDTO(itemPedido.getPedido());
-		this.produto = new ProdutoDTO(itemPedido.getProduto());
-		this.quantidade = itemPedido.getQuantidade();
-		this.observacao = itemPedido.getObservacao();
-	}
+	private Status status;
+	
 
 }
