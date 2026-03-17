@@ -70,4 +70,12 @@ public class ProdutoService {
 		
 	}
 	
+	public List<ProdutoMaisPedido> produtoMaisPedido(){
+		return produtoRepository.produtoMaisPedido().stream().map(produto -> new ProdutoMaisPedido(
+				produto.id(),
+				produto.nome(),
+				produto.total()
+				)).toList();
+	}
+	
 }

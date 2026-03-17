@@ -1,20 +1,20 @@
-	package com.ecommerce.repository;
+package com.ecommerce.repository;
 	
-	import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.util.List;
 	
-	import org.springframework.data.jpa.repository.JpaRepository;
-	import org.springframework.data.jpa.repository.Query;
-	import org.springframework.data.repository.query.Param;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 	
-	import com.ecommerce.dto.ItemPedidoDTO;
-	import com.ecommerce.dto.PedidoDTO;
-	import com.ecommerce.entity.Pedido;
+	
+import com.ecommerce.entity.Pedido;
 import com.ecommerce.service.DialogGrid;
 import com.ecommerce.service.GridCozinha;
 import com.ecommerce.service.ListaPedidoMenu;
-	import com.ecommerce.service.ListaPedidos;
+import com.ecommerce.service.ListaPedidos;
+import com.ecommerce.service.Pedidos;
 	
 	public interface PedidoRepository extends JpaRepository<Pedido, Long>{
 		
@@ -141,6 +141,29 @@ import com.ecommerce.service.ListaPedidoMenu;
 				""", nativeQuery = true)
 		List<DialogGrid> dialogProdutoCozinha(Long id);
 	
+		
+		//pedidos mes
+		
+		@Query(value = """
+				select
+					COUNT(id) as total
+				from arqpedi
+				where EXTRACT(month from data_hora) = extract(month from CURRENT_DATE)
+				and extract(YEAR from data_hora) = extract(year from CURRENT_DATE);
+				""", nativeQuery = true)
+		List<Pedidos> totalPedidos();
+		
+		
+		//pedidos hoje
+		@Query(value = """
+				select
+					COUNT(id) as pedidos
+				from arqpedi
+				where DATE(data_hora) = CURRENT_DATE;
+				""", nativeQuery = true)
+		List<Pedidos> totalPedidosHoje();
+
+		
 	}
 	
 	

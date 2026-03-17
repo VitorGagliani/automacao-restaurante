@@ -228,4 +228,27 @@ public class GerenciaPedidoService {
 				)).toList();
 	}
 	
+	//Total pedidos no mes
+	
+	public List<Pedidos> totalPedidos(){
+		return pedidoRepository.totalPedidos().stream().map(pedidos -> new Pedidos(
+				pedidos.total()
+				)).toList();
+	}
+	
+	//Total pedidos hoje
+	
+	public List<Pedidos> totalPedidosHoje(){
+		return pedidoRepository.totalPedidosHoje().stream().map(pedidos -> new Pedidos(
+				pedidos.total()
+				)).toList();
+	}
+	
+	//Pedidos em preparo
+	public List<Pedidos> pedidosEmPreparo(){
+		return itemRepository.pedidosEmPreparo().stream().map(pedidos -> new Pedidos(
+				pedidos.total()
+				)).toList();
+	}
+	
 }

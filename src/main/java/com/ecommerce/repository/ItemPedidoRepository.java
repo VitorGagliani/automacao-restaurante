@@ -11,6 +11,7 @@ import com.ecommerce.dto.ItemPedidoDTO;
 import com.ecommerce.entity.ItemPedido;
 import com.ecommerce.service.ListaItems;
 import com.ecommerce.service.ListarProdutosMenu;
+import com.ecommerce.service.Pedidos;
 
 public interface ItemPedidoRepository extends JpaRepository<ItemPedido, Long>{
 	
@@ -30,5 +31,13 @@ public interface ItemPedidoRepository extends JpaRepository<ItemPedido, Long>{
 		    order by itemPedido.id desc
 		    """, nativeQuery = true)
 		List<ListaItems> listarItemsPedidos();
+	
+	@Query(value = """
+			select
+				COUNT(id) as total
+			from arq_it_pe
+			where status = 'EmPreparo';
+			""", nativeQuery = true)
+	List<Pedidos> pedidosEmPreparo();
 
 }
