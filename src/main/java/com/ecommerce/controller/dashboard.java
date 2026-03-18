@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ecommerce.service.Faturamento;
 import com.ecommerce.service.GerenciaPedidoService;
 import com.ecommerce.service.Pedidos;
 import com.ecommerce.service.ProdutoMaisPedido;
@@ -44,6 +45,16 @@ public class dashboard {
 	@GetMapping(value = "/pedidosEmPreparo")
 	public List<Pedidos> pedidosEmPreparo(){
 		return pedido.pedidosEmPreparo();
+	}
+	
+	@GetMapping(value = "/faturamentoMes")
+	public List<Faturamento> faturamentoMes(){
+		return pedido.totalMes();
+	}
+	
+	@GetMapping(value = "/faturamentoDia")
+	public List<Faturamento> faturamentoDia(){
+		return pedido.totalDia();
 	}
 	
 }

@@ -251,4 +251,17 @@ public class GerenciaPedidoService {
 				)).toList();
 	}
 	
+	//faturamento mes
+	public List<Faturamento> totalMes(){
+		return pedidoRepository.totalMes().stream().map(faturamento -> new Faturamento(
+				faturamento.faturamento()
+				)).toList();
+	}
+	
+	public List<Faturamento> totalDia(){
+		return pedidoRepository.totalDia().stream().map(faturamento -> new Faturamento(
+				faturamento.faturamento()
+				)).toList();
+	}
+	
 }

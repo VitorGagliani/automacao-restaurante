@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 	
 import com.ecommerce.entity.Pedido;
 import com.ecommerce.service.DialogGrid;
+import com.ecommerce.service.Faturamento;
 import com.ecommerce.service.GridCozinha;
 import com.ecommerce.service.ListaPedidoMenu;
 import com.ecommerce.service.ListaPedidos;
@@ -162,6 +163,27 @@ import com.ecommerce.service.Pedidos;
 				where DATE(data_hora) = CURRENT_DATE;
 				""", nativeQuery = true)
 		List<Pedidos> totalPedidosHoje();
+		
+		@Query(value = """
+				SELECT 
+				    SUM(pi.quantidade * p.preco) AS faturamento
+				FROM arq_it_pe pi
+				JOIN arqprod p ON p.id = pi.produto_id 
+				JOIN arqpedi ped ON ped.id = pi.pedido_id 
+				WHERE EXTRACT(MONTH FROM ped.data_hora) = EXTRACT(MONTH FROM CURRENT_DATE)
+					AND EXTRACT(YEAR FROM ped.data_hora) = EXTRACT(YEAR FROM CURRENT_DATE);
+				""", nativeQuery = true)
+		List<Faturamento> totalMes();
+		
+		@Query(value = """
+				SELECT 
+				    SUM(pi.quantidade * p.preco) AS faturamento_hoje
+				FROM arq_it_pe pi
+				JOIN arqprod p ON p.id = pi.produto_id 
+				JOIN arqpedi ped ON ped.id = pi.pedido_id 
+				WHERE DATE(ped.data_hora) = CURRENT_DATE;
+				""", nativeQuery = true)
+		List<Faturamento> totalDia();
 
 		
 	}
