@@ -21,7 +21,7 @@ public class ProdutoDTO{
 
 	private BigDecimal preco;
 	
-	private CategoriaDTO categoria;
+	private Long categoriaId;
 
 	private String imagem;
 	
@@ -30,7 +30,7 @@ public class ProdutoDTO{
 		this.nome = produto.getNome();
 		this.descricao = produto.getDescricao();
 		this.preco = produto.getPreco();
-		this.categoria = new CategoriaDTO(produto.getCategoria());
+		this.categoriaId = produto.getCategoria().getId();
 		this.imagem = produto.getImagem();
 	}
 

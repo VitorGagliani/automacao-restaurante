@@ -48,4 +48,6 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 			""", nativeQuery = true)
 	List<ProdutoMaisPedido> produtoMaisPedido();
 
+	boolean existsByCategoriaId(Long categoriaId);
+	
 }

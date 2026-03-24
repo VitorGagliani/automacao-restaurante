@@ -47,6 +47,24 @@ public class ProdutoService {
 		
 	}
 	
+	public Produto editar(ProdutoDTO produtoDto) {
+		Produto produto = produtoRepository.findById(produtoDto.getId()).orElseThrow(() -> new RuntimeException("Categoria não encontrada"));
+	    Categoria categoria = categoriaRepository.findById(produtoDto.getCategoriaId())
+	            .orElseThrow(() -> new RuntimeException("Categoria não encontrada"));
+		produto.setNome(produtoDto.getNome());
+		produto.setDescricao(produtoDto.getDescricao());
+		produto.setImagem(produtoDto.getImagem());
+		produto.setPreco(produtoDto.getPreco());
+		produto.setCategoria(categoria);
+		
+		return produtoRepository.save(produto);
+	}
+	
+	public void deletar(Long id) {
+
+	    produtoRepository.deleteById(id);
+	}
+	
 	public List<ListarProdutosMenu> listar(Long idCategoria){
 		return produtoRepository.listarProdutos(idCategoria).stream().map(produto -> new ListarProdutosMenu(
 				produto.id(),
