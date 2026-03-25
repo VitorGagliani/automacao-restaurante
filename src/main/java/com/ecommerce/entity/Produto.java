@@ -2,8 +2,12 @@ package com.ecommerce.entity;
 
 import java.math.BigDecimal;
 
+import com.ecommerce.enums.ProdutoStatus;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -39,6 +43,10 @@ public class Produto{
 		@ManyToOne
 		@JoinColumn(name = "cat_id", nullable = false)
 		private Categoria categoria;
+		
+		@Enumerated(EnumType.STRING)
+	    @Column(nullable = false)
+		private ProdutoStatus status;
 		
 		
 }

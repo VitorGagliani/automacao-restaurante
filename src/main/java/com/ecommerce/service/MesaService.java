@@ -24,6 +24,16 @@ public class MesaService {
 		return mesaRepository.save(mesa);
 	}
 	
+	public Mesa editar(MesaDTO mesaDto) {
+		Mesa mesa = mesaRepository.findById(mesaDto.getId()).orElseThrow(() -> new RuntimeException("Mesa não encontrada"));
+		mesa.setNumero(mesaDto.getNumero());
+		return mesaRepository.save(mesa);
+	}
+	
+	public void deletar(Long id) {
+	    mesaRepository.deleteById(id);
+	}
+	
 	public List<MesaDTO> listar(){
 		return mesaRepository.listarMesas();
 	}

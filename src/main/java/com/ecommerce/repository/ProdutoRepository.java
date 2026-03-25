@@ -18,9 +18,11 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 			imagem,
 			nome,
 			preco,
-			descricao
+			descricao,
+			status
 		from arqprod
-		where cat_id = ?1;"""
+		where cat_id = ?1
+		and status = 'ativo';"""
 			, nativeQuery = true)
 	List<ListarProdutosMenu> listarProdutos(Long idCategoria);
 	
@@ -30,7 +32,8 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 			imagem,
 			nome,
 			preco,
-			descricao
+			descricao,
+			status
 		from arqprod;"""
 			, nativeQuery = true)
 	List<ListarProdutosMenu> listarProdutosTodos();

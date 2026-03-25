@@ -38,15 +38,16 @@ public class ProdutoController {
 		return adicionar.editar(produto);
 	}
 	
-	@DeleteMapping("/deletar/{id}")
-	public ResponseEntity<?> deletar(@PathVariable Long id) {
+	@PutMapping("/ativar/{id}")
+	public ResponseEntity<?> ativa(@PathVariable Long id) {
 	    try {
-	        adicionar.deletar(id);
+	        adicionar.ativar(id);
 	        return ResponseEntity.noContent().build();
 	    } catch (RuntimeException e) {
 	        return ResponseEntity.badRequest().body(e.getMessage());
 	    }
 	}
+	
 	
 	@GetMapping(value = "/listar/{idCategoria}")
 	public List<ListarProdutosMenu> listar(@PathVariable("idCategoria") Long idCategoria, ProdutoDTO produto){

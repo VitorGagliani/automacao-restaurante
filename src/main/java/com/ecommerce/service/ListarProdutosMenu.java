@@ -7,5 +7,6 @@ public record ListarProdutosMenu(
 		String imagem,
 		String nome,
 		BigDecimal preco,
-		String descricao
+		String descricao,
+		String status
 		) {}

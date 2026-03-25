@@ -9,6 +9,7 @@ import com.ecommerce.dto.NovoProdutoDTO;
 import com.ecommerce.dto.ProdutoDTO;
 import com.ecommerce.entity.Categoria;
 import com.ecommerce.entity.Produto;
+import com.ecommerce.enums.ProdutoStatus;
 import com.ecommerce.repository.CategoriaRepository;
 import com.ecommerce.repository.PedidoRepository;
 import com.ecommerce.repository.ProdutoRepository;
@@ -42,28 +43,40 @@ public class ProdutoService {
 		produto.setCategoria(categoria);
 		produto.setImagem(produtoDto.getImagem());
 		produto.setPreco(produtoDto.getPreco());
+		produto.setStatus(ProdutoStatus.ativo);
 		
 		return produtoRepository.save(produto);
 		
 	}
 	
 	public Produto editar(ProdutoDTO produtoDto) {
-		Produto produto = produtoRepository.findById(produtoDto.getId()).orElseThrow(() -> new RuntimeException("Categoria não encontrada"));
+		System.out.println("Categoria ID: " + produtoDto.getCategoriaId());
+		Produto produto = produtoRepository.findById(produtoDto.getId()).orElseThrow(() -> new RuntimeException("Produto não encontrada"));
 	    Categoria categoria = categoriaRepository.findById(produtoDto.getCategoriaId())
 	            .orElseThrow(() -> new RuntimeException("Categoria não encontrada"));
-		produto.setNome(produtoDto.getNome());
+		System.out.println("Categoria atribuida: " + categoria);
+	    produto.setNome(produtoDto.getNome());
 		produto.setDescricao(produtoDto.getDescricao());
 		produto.setImagem(produtoDto.getImagem());
 		produto.setPreco(produtoDto.getPreco());
 		produto.setCategoria(categoria);
+		produto.setStatus(produtoDto.getStatus());
 		
 		return produtoRepository.save(produto);
 	}
 	
-	public void deletar(Long id) {
-
-	    produtoRepository.deleteById(id);
+	public Produto ativar(Long id) {
+		
+		Produto produto = produtoRepository.findById(id).orElseThrow(() -> new RuntimeException("Produto não encontrada"));
+	    if(produto.getStatus() == ProdutoStatus.ativo) {
+			produto.setStatus(ProdutoStatus.inativo);
+	    }else if(
+	    produto.getStatus() == ProdutoStatus.inativo) {
+			produto.setStatus(ProdutoStatus.ativo);
+	    }
+		return produtoRepository.save(produto);
 	}
+	
 	
 	public List<ListarProdutosMenu> listar(Long idCategoria){
 		return produtoRepository.listarProdutos(idCategoria).stream().map(produto -> new ListarProdutosMenu(
@@ -71,7 +84,8 @@ public class ProdutoService {
 				produto.imagem(),
 				produto.nome(),
 				produto.preco(),
-				produto.descricao()
+				produto.descricao(),
+				produto.status()
 				)).toList();
 		
 		
@@ -83,7 +97,8 @@ public class ProdutoService {
 				produto.imagem(),
 				produto.nome(),
 				produto.preco(),
-				produto.descricao()
+				produto.descricao(),
+				produto.status()
 				)).toList();
 		
 	}

@@ -1,6 +1,7 @@
 package com.ecommerce.dto;
 import java.math.BigDecimal;
 import com.ecommerce.entity.Produto;
+import com.ecommerce.enums.ProdutoStatus;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,8 @@ public class ProdutoDTO{
 
 	private String imagem;
 	
+	private ProdutoStatus status;
+	
 	public ProdutoDTO (Produto produto) {
 		this.id = produto.getId();
 		this.nome = produto.getNome();
@@ -32,6 +35,7 @@ public class ProdutoDTO{
 		this.preco = produto.getPreco();
 		this.categoriaId = produto.getCategoria().getId();
 		this.imagem = produto.getImagem();
+		this.status = produto.getStatus();
 	}
 
 
